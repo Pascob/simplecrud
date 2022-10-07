@@ -5,7 +5,7 @@
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-client" [routerLink]="['/client/new']">
             <fa-icon icon="plus"></fa-icon>
             <span  jhiTranslate="simpleCrudApp.client.home.createLabel">
-            Create a new Client
+            Edition d'un client
             </span>
         </button>
     </h2>
@@ -15,30 +15,30 @@
     <jhi-alert></jhi-alert>
 
     <div class="alert alert-warning" id="no-result" *ngIf="clients?.length === 0">
-        <span jhiTranslate="simpleCrudApp.client.home.notFound">No clients found</span>
+        <span jhiTranslate="simpleCrudApp.client.home.notFound">Aucun client trouvé</span>
     </div>
 
-    <div class="table-responsive" id="entities" *ngIf="clients && clients.length > 0">
+    <div class="table table-responsive table-bordered" id="entities" *ngIf="clients && clients.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <!-- <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th> -->
                     <th scope="col"  jhiSortBy="nom"><span jhiTranslate="simpleCrudApp.client.nom">Nom</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="telephone"><span jhiTranslate="simpleCrudApp.client.telephone">Telephone</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="telephone"><span jhiTranslate="simpleCrudApp.client.telephone">Téléphone</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="solde"><span jhiTranslate="simpleCrudApp.client.solde">Solde</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="isActif"><span jhiTranslate="simpleCrudApp.client.isActif">Is Actif</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="isActif"><span jhiTranslate="simpleCrudApp.client.isActif">Actif</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="photo"><span jhiTranslate="simpleCrudApp.client.photo">Photo</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="dateCreation"><span jhiTranslate="simpleCrudApp.client.dateCreation">Date Creation</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateCreation"><span jhiTranslate="simpleCrudApp.client.dateCreation">Date Création</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let client of clients ;trackBy: trackId">
-                    <td><a [routerLink]="['/client', client.id, 'view']">{{ client.id }}</a></td>
+                    <!-- <td><a [routerLink]="['/client', client.id, 'view']">{{ client.id }}</a></td> -->
                     <td>{{ client.nom }}</td>
                     <td>{{ client.telephone }}</td>
                     <td>{{ client.solde }}</td>
-                    <td>{{ client.isActif }}</td>
+                    <td>{{ client.isActif ? 'Oui' : 'Non' }}</td>
                     <td>
                         <a *ngIf="client.photo" (click)="openFile(client.photoContentType, client.photo)">
                             <img [src]="'data:' + client.photoContentType + ';base64,' + client.photo" style="max-height: 30px;" alt="client image"/>
@@ -52,20 +52,20 @@
                                     [routerLink]="['/client', client.id, 'view']"
                                     class="btn btn-info btn-sm">
                                 <fa-icon icon="eye"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
                             </button>
 
                             <button type="submit"
                                     [routerLink]="['/client', client.id, 'edit']"
                                     class="btn btn-primary btn-sm">
                                 <fa-icon icon="pencil-alt"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Modifier</span>
                             </button>
 
                             <button type="submit" (click)="delete(client)"
                                     class="btn btn-danger btn-sm">
                                 <fa-icon icon="times"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
                             </button>
                         </div>
                     </td>
