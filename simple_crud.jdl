@@ -1,0 +1,26 @@
+
+application {
+  config {
+    baseName simpleCrud,
+    applicationType monolith,
+    packageName com.pascob.simplecrud,
+    authenticationType jwt,
+    prodDatabaseType mysql,
+    clientFramework angular
+  }
+  entities *
+}
+
+entity Client {
+	nom String required maxlength(100),
+    telephone String required unique maxlength(17),
+    solde Double
+    isActif Boolean
+    photo ImageBlob
+    dateCreation LocalDate
+}
+paginate * with pagination
+service * with serviceClass
+filter *
+
+    

@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="client">
+            <h2><span jhiTranslate="simpleCrudApp.client.detail.title">Client</span> {{ client.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="simpleCrudApp.client.nom">Nom</span></dt>
+                <dd>
+                    <span>{{ client.nom }}</span>
+                </dd>
+                <dt><span jhiTranslate="simpleCrudApp.client.telephone">Telephone</span></dt>
+                <dd>
+                    <span>{{ client.telephone }}</span>
+                </dd>
+                <dt><span jhiTranslate="simpleCrudApp.client.solde">Solde</span></dt>
+                <dd>
+                    <span>{{ client.solde }}</span>
+                </dd>
+                <dt><span jhiTranslate="simpleCrudApp.client.isActif">Is Actif</span></dt>
+                <dd>
+                    <span>{{ client.isActif }}</span>
+                </dd>
+                <dt><span jhiTranslate="simpleCrudApp.client.photo">Photo</span></dt>
+                <dd>
+                    <div *ngIf="client.photo">
+                        <a (click)="openFile(client.photoContentType, client.photo)">
+                            <img [src]="'data:' + client.photoContentType + ';base64,' + client.photo" style="max-width: 100%;" alt="client image"/>
+                        </a>
+                        {{ client.photoContentType }}, {{ byteSize(client.photo) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="simpleCrudApp.client.dateCreation">Date Creation</span></dt>
+                <dd>
+                    <span>{{ client.dateCreation }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/client', client.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
